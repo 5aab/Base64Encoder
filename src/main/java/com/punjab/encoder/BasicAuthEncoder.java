@@ -2,36 +2,50 @@ package com.punjab.encoder;
 
 import java.awt.event.*;
 import javax.swing.*;
-public class ButtonExample {
+public class BasicAuthEncoder {
 
     public static void main(String[] args) {
         final JTextField calculatedVal=new JTextField("");
 
         final JTextField userTf=new JTextField();
-        userTf.setBounds(50,10, 150,20);
+        userTf.setBounds(80,10, 150,20);
         final JLabel userLabel =new JLabel();
-        userLabel.setBounds(10,10, 40,20);
+        userLabel.setBounds(10,10, 70,20);
         userLabel.setText("sid");
 
-        final JPasswordField password=new JPasswordField();
-        password.setBounds(50,35, 150,20);
+        final JPasswordField passwordField=new JPasswordField();
+        passwordField.setBounds(80,35, 150,20);
         final JLabel passwordLabel =new JLabel();
-        passwordLabel.setBounds(10,35, 40,20);
+        passwordLabel.setBounds(10,35, 70,20);
         passwordLabel.setText("password");
 
         JFrame frame=new JFrame("Base64 Encoder/Decoder");
-        JButton encodeButton=new JButton("Encode");
-        encodeButton.setBounds(50,100,80,20);
+        final JButton decodeButton=new JButton("Decode");
+        final JButton encodeButton=new JButton("Encode");
+        encodeButton.setBounds(80,100,80,20);
         encodeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 calculatedVal.setText("Encoded: Basic "+"");
+                encodeButton.setEnabled(false);
+                passwordLabel.setVisible(false);
+                passwordField.setVisible(false);
+                decodeButton.setEnabled(true);
+                encodeButton.setEnabled(false);
+                userLabel.setText("Encoded Val ");
             }
         });
-        JButton decodeButton=new JButton("Decode");
-        decodeButton.setBounds(132,100,80,20);
+
+
+        decodeButton.setBounds(162,100,80,20);
+        decodeButton.setEnabled(false);
         decodeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 calculatedVal.setText("Decoded: "+"");
+                passwordLabel.setVisible(true);
+                passwordField.setVisible(true);
+                encodeButton.setEnabled(true);
+                decodeButton.setEnabled(false);
+                userLabel.setText("sid");
             }
         });
 
@@ -41,7 +55,7 @@ public class ButtonExample {
         frame.add(userTf);
         frame.add(userLabel);
 
-        frame.add(password);
+        frame.add(passwordField);
         frame.add(passwordLabel);
 
         frame.setSize(300,200);
