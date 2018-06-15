@@ -1,6 +1,7 @@
 package com.punjab.encoder;
 
 import java.awt.event.*;
+import java.util.Base64;
 import javax.swing.*;
 public class BasicAuthEncoder {
 
@@ -68,6 +69,16 @@ public class BasicAuthEncoder {
         calculatedVal.setBorder(null); //remove the border
         calculatedVal.setBounds(50,70, 250,20);
         frame.add(calculatedVal);
+    }
+
+    private static String encode(String str) throws Exception{
+        byte[] b=str.getBytes("UTF-8");
+        return Base64.getEncoder().encodeToString(b);
+    }
+
+    private static String decode(String str) throws Exception{
+        byte[] d=Base64.getDecoder().decode(str);
+        return new String(d,"US-ASCII");
     }
 
 }
